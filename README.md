@@ -13,7 +13,7 @@ npm install -g gitdown-cli
 
 ## Usage in CLI Command
 
-```cmd
+```bash
 gitdown https://github.com/user/repo/tree/main/path [.|dir|dir/subdir|new-path]?
 or
 gitdown user/repo/path
