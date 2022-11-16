@@ -1,6 +1,6 @@
 # gitdown-cli
 
-Download folder and files from github repository
+Download single folder and files from github repository
 
 See gitdown for the command-line github single folder and files download.
 
@@ -22,10 +22,10 @@ gitdown user/repo/path <path>?
 
 ## Example
 ```bash
-// folder download
+# folder download
 gitdown https://github.com/nodejs/node/tree/main/doc/api <new-path>?
 or
-// file download 
+# file download 
 gitdown https://github.com/nodejs/node/blob/main/doc/api/buffer.md <new-name>?
 ```
 
