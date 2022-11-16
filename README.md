@@ -1,8 +1,8 @@
-# gitdown
+# gitdown-cli
 
-Download directory and files from github repository
+Download folder and files from github repository
 
-See gitdown for the command-line github directory and files download.
+See gitdown for the command-line github single folder and files download.
 
 ## Install
 
@@ -14,9 +14,19 @@ npm install -g gitdown-cli
 ## Usage in CLI Command
 
 ```bash
-gitdown https://github.com/user/repo/tree/main/path [.|dir|dir/subdir|new-path]?
+# <path> (.|dir|dir/subdir|new-path|../)
+gitdown https://github.com/user/repo/tree/main/path <path>? 
 or
-gitdown user/repo/path
+gitdown user/repo/path <path>?
+```
+
+## Example
+```bash
+// folder download
+gitdown https://github.com/nodejs/node/tree/main/doc/api <new-path>?
+or
+// file download 
+gitdown https://github.com/nodejs/node/blob/main/doc/api/buffer.md <new-name>?
 ```
 
 ## Usage in Nodejs

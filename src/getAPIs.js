@@ -12,9 +12,9 @@ async function* getAPIs(apiUrl) {
         const { data } = await octokit.request(`GET ${apiUrl}`, {
             headers: {
                 accept: "application/vnd.github.v3+json",
-                authorization: "token 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",
-                referer: "https://v--0kvkd1gg50uq1ko9vd4pluu8mt5cbsiakrohahj34gg4p2q1l3j6.vscode-cdn.net/",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26"
+                authorization: "token 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",
+                referer: "https://v--1r9q7jl9f4q7gd550g7e652uegql3a949ngsm07enct1g72uh5de.vscode-cdn.net/",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.42"
             }
         });
 
