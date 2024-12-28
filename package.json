@@ -1,7 +1,7 @@
 {
   "name": "gitdown-cli",
   "version": "2.0.0",
-  "description": "Download a repository, folder, subfolders or file from a GitHub repository URL or Path.",
+  "description": "A CLI tool to download GitHub repository files or folders",
   "main": "gitdown.js",
   "type": "module",
   "bin": {
@@ -15,7 +15,8 @@
     "download",
     "repository",
     "directory",
-    "folder"
+    "folders",
+    "files"
   ],
   "author": "Jabed Hossain (https://github.com/jabed-web-dev)",
   "license": "IMT",
