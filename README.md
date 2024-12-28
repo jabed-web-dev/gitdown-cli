@@ -1,8 +1,7 @@
-# gitdown-cli
+# gitdown-cli (CLI Tool)
 
-Download single folder and files from github repository
+**Download a repository, folder, subfolders or file from a GitHub repository URL or Path.**
 
-See gitdown for the command-line github single folder and files download.
 
 ## Install
 
@@ -14,27 +13,24 @@ npm install -g gitdown-cli
 ## Usage in CLI Command
 
 ```bash
-# <path> (.|dir|dir/subdir|new-path|../) 
-# <branch> use any branch
-gitdown https://github.com/user/repo/tree/<branch>/path <path>? 
-or
-# ignore github.com and tree/branch
-gitdown user/repo/path <path>?
+gitdown -h|--help
+
+Usage:
+  <url>   GitHub repository URL: <https://github.com/>?user/repo/<tree|blob>/branch/<folder|file>
+          Use folder path: user/repo/<folder>   Default branch: main
+          Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
 ```
 
-## Example
+## Download
 ```bash
-# folder download
-gitdown https://github.com/nodejs/node/tree/main/doc/api <new-path>?
-or
-# file download 
-gitdown https://github.com/nodejs/node/blob/main/doc/api/buffer.md <new-name>?
-```
+# download folder with url
+gitdown https://github.com/nodejs/node/tree/main/doc/api
+# with path
+gitdown nodejs/node/tree/main/doc/api
+gitdown nodejs/node/doc/api #(default main) work with folder path
 
-## Usage in Nodejs
-
-```js
-const gitdown = require('gitdown')
-
-gitdown(url, path, dir?)
+# download file with url
+gitdown https://github.com/nodejs/node/blob/main/doc/api/index.md
+# with path
+gitdown nodejs/node/blob/main/doc/api/index.md
 ```

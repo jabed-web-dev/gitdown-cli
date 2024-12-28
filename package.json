@@ -1,33 +1,30 @@
 {
   "name": "gitdown-cli",
-  "version": "1.1.2",
-  "description": "Download single folder and files from github repository",
-  "main": "src/index.js",
+  "version": "2.0.0",
+  "description": "Download a repository, folder, subfolders or file from a GitHub repository URL or Path.",
+  "main": "gitdown.js",
+  "type": "module",
   "bin": {
-    "gitdown": "bin/gitdown.js"
+    "gitdown": "gitdown.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node gitdown.js"
   },
   "keywords": [
     "gitdown",
     "download",
     "repository",
-    "folder",
-    "files"
+    "directory",
+    "folder"
   ],
-  "author": "Jabed Hossain <jabedhossain.app.dev@gmail.com> (https://github.com/jabed-dev)",
+  "author": "Jabed Hossain (https://github.com/jabed-web-dev)",
   "license": "IMT",
-  "dependencies": {
-    "@octokit/rest": "^19.0.4",
-    "download": "^8.0.0"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jabed-dev/gitdown-cli.git"
+    "url": "git+https://github.com/jabed-web-dev/gitdown-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/jabed-dev/gitdown-cli/issues"
+    "url": "https://github.com/jabed-web-dev/gitdown-cli/issues"
   },
-  "homepage": "https://github.com/jabed-dev/gitdown-cli#readme"
+  "homepage": "https://github.com/jabed-web-dev/gitdown-cli#readme"
 }
