@@ -127,7 +127,7 @@ async function argument(arg) {
   try {
     const { owner, repo, type, branch, path } = parseGitHubUrl(arg);
     console.log(
-      `Parsed URL: Owner: \x1b[32m${owner}\x1b[0m, Repo: \x1b[32m${repo}\x1b[0m, Type: \x1b[32m${type}\x1b[0m, Branch: \x1b[32m${branch}\x1b[0m, Path: \x1b[32m${path}\x1b[0m\n`
+      `Parsed URL: { Owner: \x1b[32m${owner}\x1b[0m, Repo: \x1b[32m${repo}\x1b[0m, Type: \x1b[32m${type}\x1b[0m, Branch: \x1b[32m${branch}\x1b[0m, Path: \x1b[32m${path}\x1b[0m }\n` 
     );
 
     if (type === 'blob') {
