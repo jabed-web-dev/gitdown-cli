@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
-import { join, basename } from 'node:path';
+import { join, basename, resolve} from 'node:path';
 import process from 'node:process';
 
 const totalDownloads = {
@@ -108,26 +108,28 @@ const parseGitHubUrl = (url) => {
   return { owner, repo, type, branch, path };
 };
 
-async function argument(arg) {
-  if (!arg) {
+async function argument(baseurl, basedir) {
+  if (!baseurl) {
     console.error('Error: No argument provided. Use -h or --help for usage instructions.');
     process.exit(1);
   }
 
-  if (/-h|--help/.test(arg)) {
+  if (/-h|--help/.test(baseurl)) {
     console.log(`
 \x1b[1mUsage:\x1b[0m
-  \x1b[36m<url>\x1b[0m   GitHub repository URL: <https://github.com/>?\x1b[36muser/repo/<tree|blob>/branch/<folder|file>\x1b[0m
-                Use folder path: \x1b[36muser/repo/<folder>\x1b[0m   Default branch: main
+  \x1b[36m<url>\x1b[0m   GitHub repository URL: \x1b[36m<https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>\x1b[0m
+                Use folder path: \x1b[36muser/repo/<folder>\x1b[0m                Default branch: main
+  \x1b[36m<path>\x1b[0m  Local directory path or filename:\x1b[36m new-dir|new-filename\x1b[0m   Default path: cwd+urlDir
+  
           Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
     `);
     process.exit(0);
   }
 
   try {
-    const { owner, repo, type, branch, path } = parseGitHubUrl(arg);
+    const { owner, repo, type, branch, path } = parseGitHubUrl(baseurl);
     console.log(
-      `Parsed URL: { Owner: \x1b[32m${owner}\x1b[0m, Repo: \x1b[32m${repo}\x1b[0m, Type: \x1b[32m${type}\x1b[0m, Branch: \x1b[32m${branch}\x1b[0m, Path: \x1b[32m${path}\x1b[0m }\n` 
+      `Parsed URL: { Owner: \x1b[32m${owner}\x1b[0m, Repo: \x1b[32m${repo}\x1b[0m, Type: \x1b[32m${type}\x1b[0m, Branch: \x1b[32m${branch}\x1b[0m, Path: \x1b[32m${path || 'root'}\x1b[0m }\n`
     );
 
     if (type === 'blob') {
@@ -135,14 +137,16 @@ async function argument(arg) {
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
       const fileName = basename(path); // Extract file name
       console.log(`Downloading file: ${fileName}`);
-      await downloadFile({ url: rawUrl, dest: fileName });
+      await downloadFile({ url: rawUrl, dest: basedir || fileName });
       const content = await getRepoContents({ owner, repo, path, branch });
       totalDownloads.files = 1;
       totalDownloads.size = content.size;
       console.log(`File downloaded: ${fileName}`);
     } else if (type === 'tree') {
       // Handle folder download
-      const localPath = join(process.cwd(), path.match(/[^/]+$/)?.[0] || repo);
+      const dirPath = resolve(basedir || process.cwd());
+      const dirName = basedir ? '' : path.match(/[^/]+$/)?.[0] || repo;
+      const localPath = join(dirPath, dirName);
       console.log(`Starting download for folder: ${path || 'root'} (branch: ${branch})`);
       await ensureDir(localPath); // Ensure the root folder exists locally
       await downloadContents({ owner, repo, branch, path, localPath });
@@ -156,4 +160,5 @@ async function argument(arg) {
   }
 }
 
-argument(process.argv.slice(2)[0]);
+const [baseurl, basedir] = process.argv.slice(2);
+argument(baseurl, basedir);
