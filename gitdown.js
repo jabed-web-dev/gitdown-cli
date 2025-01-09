@@ -108,6 +108,10 @@ const parseGitHubUrl = (url) => {
   return { owner, repo, type, branch, path };
 };
 
+function color(text, code) {
+  return `\x1b[${code}m${text}\x1b[0m`
+}
+
 async function argument(baseurl, basedir) {
   if (!baseurl) {
     console.error('Error: No argument provided. Use -h or --help for usage instructions.');
@@ -116,13 +120,13 @@ async function argument(baseurl, basedir) {
 
   if (/-h|--help/.test(baseurl)) {
     console.log(`
-\x1b[1mUsage:\x1b[0m
- \x1b[33m gitdown \x1b[36m<url> <path>?\x1b[0m
-  \x1b[36m<url>\x1b[0m   GitHub repository URL: \x1b[36m<https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>\x1b[0m
-                Use folder path: \x1b[36muser/repo/<folder>\x1b[0m                Default branch:\x1b[35m main\x1b[0m
-  \x1b[36m<path>?\x1b[0m Local directory path or filename:\x1b[36m new-dir|new-filename\x1b[0m   Default path:\x1b[35m cwd+urlPath\x1b[0m
+${color('Usage:', 1)}
+  ${color('gitdown', 33)} ${color('<url> <path>?', 36)}
+  ${color('<url>', 36)}   GitHub repository URL: ${color('<https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>', 36)}
+          Use folder path: ${color('user/repo/<folder>', 36)}                     Default branch: ${color('main', 95)}
+  ${color('<path>?', 36)} Local directory path or filename: ${color('new-dir|new-filename', 36)}  Default path: ${color('cwd+urlPath', 95)}
   
-          Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
+          Download a repository, folder, subfolder or file from a GitHub repository URL or Path.
     `);
     process.exit(0);
   }
@@ -130,7 +134,7 @@ async function argument(baseurl, basedir) {
   try {
     const { owner, repo, type, branch, path } = parseGitHubUrl(baseurl);
     console.log(
-      `Parsed URL: { Owner: \x1b[32m${owner}\x1b[0m, Repo: \x1b[32m${repo}\x1b[0m, Type: \x1b[32m${type}\x1b[0m, Branch: \x1b[32m${branch}\x1b[0m, Path: \x1b[32m${path || 'root'}\x1b[0m }\n`
+      `Parsed URL: { Owner: ${color(owner, 32)}, Repo: ${color(repo, 32)}, Type: ${color(type, 32)}, Branch: ${color(branch, 32)}, Path: ${color(path || 'root', 32)} }\n`
     );
 
     if (type === 'blob') {
@@ -154,8 +158,8 @@ async function argument(baseurl, basedir) {
     } else {
       throw new Error('Unsupported URL type. URL must point to a file or folder.');
     }
-    console.log(`\nTotal download files: \x1b[33m${totalDownloads.files}\x1b[0m  Size: \x1b[33m${formatFileSize(totalDownloads.size)}\x1b[0m`);
-    console.log(`✅ \x1B[0;32mDownload completed!\x1B[1;0m`);
+    console.log(`\nTotal download files: ${color(totalDownloads.files, 33)}  Size: ${color(formatFileSize(totalDownloads.size), 33)}`);
+    console.log(`✅ ${color('Download completed!', 32)}`);
   } catch (error) {
     console.error('Error:', error.message);
   }

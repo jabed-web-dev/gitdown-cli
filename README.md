@@ -20,10 +20,10 @@ gitdown -h|--help
 Usage:
   gitdown <url> <path>?
   <url>   GitHub repository URL: <https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>
-                Use folder path: user/repo/<folder>                Default branch: main
-  <path>? Local directory path or filename: new-dir|new-filename   Default path: cwd+urlPath
+          Use folder path: user/repo/<folder>                     Default branch: main
+  <path>? Local directory path or filename: new-dir|new-filename  Default path: cwd+urlPath
 
-          Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
+          Download a repository, folder, subfolder or file from a GitHub repository URL or Path.
 ```
 
 ## Download commands
