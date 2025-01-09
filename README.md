@@ -18,9 +18,10 @@ deno install -g -RWN -n gitdown npm:gitdown-cli
 gitdown -h|--help
 
 Usage:
+  gitdown <url> <path>?
   <url>   GitHub repository URL: <https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>
                 Use folder path: user/repo/<folder>                Default branch: main
-  <path>  Local directory path or filename: new-dir|new-filename   Default path: cwd+urlDir
+  <path>? Local directory path or filename: new-dir|new-filename   Default path: cwd+urlPath
 
           Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
 ```
@@ -31,7 +32,7 @@ Usage:
 gitdown https://github.com/nodejs/node/tree/main/doc/api node-api
 # with path
 gitdown nodejs/node/tree/main/doc/api
-gitdown nodejs/node/doc/api #(default main) work with folder path
+gitdown nodejs/node/doc/api #(default branch main) work with folder path
 
 # Download file with url
 gitdown https://github.com/nodejs/node/blob/main/doc/api/index.md node-api.md

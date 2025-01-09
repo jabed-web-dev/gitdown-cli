@@ -117,9 +117,10 @@ async function argument(baseurl, basedir) {
   if (/-h|--help/.test(baseurl)) {
     console.log(`
 \x1b[1mUsage:\x1b[0m
+ \x1b[33m gitdown \x1b[36m<url> <path>?\x1b[0m
   \x1b[36m<url>\x1b[0m   GitHub repository URL: \x1b[36m<https://github.com/>?user/repo/<tree|blob>/branch/path/<folder|file>\x1b[0m
-                Use folder path: \x1b[36muser/repo/<folder>\x1b[0m                Default branch: main
-  \x1b[36m<path>\x1b[0m  Local directory path or filename:\x1b[36m new-dir|new-filename\x1b[0m   Default path: cwd+urlDir
+                Use folder path: \x1b[36muser/repo/<folder>\x1b[0m                Default branch:\x1b[35m main\x1b[0m
+  \x1b[36m<path>?\x1b[0m Local directory path or filename:\x1b[36m new-dir|new-filename\x1b[0m   Default path:\x1b[35m cwd+urlPath\x1b[0m
   
           Download a repository, folder, subfolders or file from a GitHub repository URL or Path.
     `);
