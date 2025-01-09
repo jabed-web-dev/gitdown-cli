@@ -19,7 +19,7 @@
     "files"
   ],
   "author": "Jabed Hossain (https://github.com/jabed-web-dev)",
-  "license": "IMT",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jabed-web-dev/gitdown-cli.git"
